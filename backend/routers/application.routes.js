@@ -1,0 +1,13 @@
+import express from "express";
+import { protect } from "../middleware/middleware.js";
+import { acceptRequest, createApplication, deleteApplication, getAllMyAcceptedApplication, getAllMyPendingApplication, getAllMyRejectedApplication, getMyApplications, rejectRequest, updateApplication } from "../controllers/application.controller.js";
+export const applicationRouter=express.Router();
+applicationRouter.post("/apply-tender",protect,createApplication);
+applicationRouter.get("/get-my-applications",protect,getMyApplications);
+applicationRouter.post("/update-application/:applicationId",protect,updateApplication);
+applicationRouter.delete("/delete-application/:applicationId",protect,deleteApplication);
+applicationRouter.get("/accept-application/:applicationId",protect,acceptRequest);
+applicationRouter.get("/reject-application/:applicationId",protect,rejectRequest);
+applicationRouter.get("/get-accept-appliaction",protect,getAllMyAcceptedApplication);
+applicationRouter.get("/get-rejected-application",protect,getAllMyRejectedApplication);
+applicationRouter.get("/get-pending-application",protect,getAllMyPendingApplication);

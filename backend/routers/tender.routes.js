@@ -1,0 +1,14 @@
+import express from "express";
+import { protect } from "../middleware/middleware.js";
+import { allocateTender, closeTender, createTender, deleteTender, getAllCompaniesExceptMyTendors, getAllTender, updateTender, viewTender } from "../controllers/tendor.controller.js";
+import { getAllAplicationToTheTender } from "../controllers/application.controller.js";
+export const tenderRouter=express.Router();
+tenderRouter.post("/create-tender",protect,createTender);
+tenderRouter.post("/update-tender/:tenderId",protect,updateTender);
+tenderRouter.get("/close-tender/:tenderId",protect,closeTender);
+tenderRouter.get("/delete-tender/:tenderId",protect,deleteTender);
+tenderRouter.get("/allocate-tender/:tenderId/:toId",protect,allocateTender);
+tenderRouter.get("/get-all-application-to-tender/:tenderId",protect,getAllAplicationToTheTender);
+tenderRouter.get("/get-all-tenders",protect,getAllTender);
+tenderRouter.get("/get-home-tenders",protect,getAllCompaniesExceptMyTendors);
+tenderRouter.get("/view-tender/:id",protect,viewTender);
